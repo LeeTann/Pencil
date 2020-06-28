@@ -4,3 +4,4 @@
 4. Set up basic file structure
 5. Set up basic navbar with login and signup
 6. Configure AWS Amplify to connect our react app to our serverless backend. Amplify refers to Cognito as Auth, S3 as Storage, and API Gateway as API.
+7. Create Login page and set up responsive navbar
