@@ -1,16 +1,27 @@
 import React, { useState } from 'react'
+import { Auth } from 'aws-amplify'
+import { useAppContext } from '../../libs/contextLib'
 import './Login.css'
 
 function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const { setIsAuthenticated } = useAppContext()
 
   function validateForm() {
     return email.length > 0 && password.length > 0
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+
+    try {
+      await Auth.signIn(email, password)
+      alert("Logged in success")
+      setIsAuthenticated(true)
+    } catch (e) {
+      alert(e.message)
+    }
   }
 
   return (
