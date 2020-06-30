@@ -4,11 +4,12 @@ import './Navbar.css'
 import { GoThreeBars } from 'react-icons/go'
 import { GrFormClose } from 'react-icons/gr'
 import { useAppContext} from '../../libs/contextLib'
+import { Auth } from 'aws-amplify'
 
 function Navbar() {
   const [menuActive, setMenuActive] = useState(false)
   const node = useRef()
-  const { isAuthenticated, setIsAuthenticated } = useAppContext()
+  const { isAuthenticated, setIsAuthenticated, isAuthenticating } = useAppContext()
 
   // handles clicks outside of menu
   const handleClick = (e) => {
@@ -30,11 +31,13 @@ function Navbar() {
     }
   }, [menuActive])
 
-  function handleLogout() {
+  async function handleLogout() {
+    Auth.signOut()
     setIsAuthenticated(false)
   }
 
   return (
+    !isAuthenticating &&
     <nav className="navbar">
       <NavLink to="/">
         <h1 className="title">Pencil</h1>

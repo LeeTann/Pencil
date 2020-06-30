@@ -6,3 +6,5 @@
 6. Configure AWS Amplify to connect our react app to our serverless backend. Amplify refers to Cognito as Auth, S3 as Storage, and API Gateway as API.
 7. Create Login page and set up responsive navbar
 8. Add session to state with contextAPI and create logout
+9. Load user session and clear session on logout with {Auth} from aws-amplify.
+10.
