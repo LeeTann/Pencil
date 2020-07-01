@@ -38,12 +38,12 @@ function Login() {
                id="email"
                type="email"
                value={formField.email}
-               placeholder="Email"
+               placeholder="email"
                onChange={setFormField} />
         <input id="password"
                type="password"
                value={formField.password}
-               placeholder="Password"
+               placeholder="password"
                onChange={setFormField} />
         <button className="btn"
                 type="submit"
