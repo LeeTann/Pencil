@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { Auth } from 'aws-amplify'
 import { useAppContext } from '../../libs/contextLib'
 import { useHistory } from 'react-router-dom'
+import { useFormField } from '../../libs/hooksLib'
 import './Login.css'
 
 function Login() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [formField, setFormField] = useFormField({email: "", password: ""})
   const [isLoading, setIsLoading] = useState(false)
   const { setIsAuthenticated } = useAppContext()
   const history = useHistory()
 
   function validateForm() {
-    return email.length > 0 && password.length > 0
+    return formField.email.length > 0 && formField.password.length > 0
   }
 
   async function handleSubmit(e) {
@@ -21,7 +21,7 @@ function Login() {
     setIsLoading(true)
 
     try {
-      await Auth.signIn(email, password)
+      await Auth.signIn(formField.email, formField.password)
       setIsAuthenticated(true)
       history.push("/")
     } catch (e) {
@@ -35,14 +35,16 @@ function Login() {
       <h2>Log in</h2>
       <form onSubmit={handleSubmit} className="form-container">
         <input autoFocus
+               id="email"
                type="email"
-               value={email}
+               value={formField.email}
                placeholder="Email"
-               onChange={e => setEmail(e.target.value)} />
-        <input type="password"
-               value={password}
+               onChange={setFormField} />
+        <input id="password"
+               type="password"
+               value={formField.password}
                placeholder="Password"
-               onChange={e => setPassword(e.target.value)} />
+               onChange={setFormField} />
         <button className="btn"
                 type="submit"
                 disabled={!validateForm()}>
