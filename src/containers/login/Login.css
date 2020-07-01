@@ -18,3 +18,12 @@ input {
   padding: 0.4rem;
   border: 1px solid #ccc;
 }
+
+.btn {
+  text-align: center;
+  padding: .5rem 0;
+}
+
+.fa-refresh {
+  color: red;
+}

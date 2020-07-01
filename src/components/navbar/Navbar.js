@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import './Navbar.css'
 import { GoThreeBars } from 'react-icons/go'
 import { GrFormClose } from 'react-icons/gr'
@@ -10,6 +10,7 @@ function Navbar() {
   const [menuActive, setMenuActive] = useState(false)
   const node = useRef()
   const { isAuthenticated, setIsAuthenticated, isAuthenticating } = useAppContext()
+  const history = useHistory()
 
   // handles clicks outside of menu
   const handleClick = (e) => {
@@ -22,18 +23,23 @@ function Navbar() {
   }
   
   useEffect(() => {
-    // add event listener when mounted
-    document.addEventListener("mousedown", handleClick)
-
-    // then remove event listener
+    if (menuActive) {
+      // add event listener when mounted
+      document.addEventListener("mousedown", handleClick)
+          // then remove event listener
     return () => {
       document.removeEventListener("mousedown", handleClick)
     }
+    }
+
   }, [menuActive])
 
   async function handleLogout() {
-    Auth.signOut()
+    await Auth.signOut()
+    
     setIsAuthenticated(false)
+
+    history.push("/login")
   }
 
   return (

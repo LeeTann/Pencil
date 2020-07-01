@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { Auth } from 'aws-amplify'
 import { useAppContext } from '../../libs/contextLib'
+import { useHistory } from 'react-router-dom'
 import './Login.css'
 
 function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const { setIsAuthenticated } = useAppContext()
+  const history = useHistory()
 
   function validateForm() {
     return email.length > 0 && password.length > 0
@@ -15,12 +18,15 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault()
 
+    setIsLoading(true)
+
     try {
       await Auth.signIn(email, password)
-      alert("Logged in success")
       setIsAuthenticated(true)
+      history.push("/")
     } catch (e) {
       alert(e.message)
+      setIsLoading(false)
     }
   }
 
@@ -37,7 +43,11 @@ function Login() {
                value={password}
                placeholder="Password"
                onChange={e => setPassword(e.target.value)} />
-        <input type="submit" value="Login" disabled={!validateForm()} className="btn" />
+        <button className="btn"
+                type="submit"
+                disabled={!validateForm()}>
+                {isLoading && <i className="fa fa-refresh fa-spin"></i>} Login
+        </button>
       </form>
     </div>
   )
