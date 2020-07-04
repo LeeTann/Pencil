@@ -10,3 +10,5 @@
 10. Redirect on login and logout with useHistory and added font-awesome 4.7 loader to button
 11. Create custom useFormField hook and update login page
 12. Create Signup page with email confirmation code.
+13. Added Neumorphic css design to login and register page
+14. Create a Note page and connect it to dynamoDB and s3

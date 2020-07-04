@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import Home from './home/Home'
 import Login from './login/Login'
 import Signup from './signup/Signup'
+import Note from './note/Note'
 import Notfound from './notfound/Notfound'
 
 function Routes() {
@@ -16,6 +17,9 @@ function Routes() {
       </Route>
       <Route exact path="/signup">
         <Signup />
+      </Route>
+      <Route exact path="/notes/new">
+        <Note />
       </Route>
       <Route>
         <Notfound />

@@ -1,3 +1,6 @@
+:root {
+  --primary-color: #e
+}
 * {
   box-sizing: border-box;
   margin: 0;
