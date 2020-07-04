@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Auth } from 'aws-amplify'
 import { useAppContext } from '../../libs/contextLib'
-import { useHistory } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 import { useFormField } from '../../libs/hooksLib'
 import './Signup.css'
 
@@ -55,50 +55,65 @@ function Signup() {
 
   function renderSignupForm() {
     return (
-      <>
-        <h2>Sign up</h2>
-        <form onSubmit={handleSignupSubmit} className="form-container">
-          <input autoFocus
-                 id="email"
-                 type="email"
-                 value={formField.email}
-                 placeholder="email"
-                 onChange={setFormField} />
-          <input id="password"
-                 type="password"
-                 value={formField.password}
-                 placeholder="password"
-                 onChange={setFormField} />
-          <input id="confirmPassword"
-                 type="password"
-                 value={formField.confirmPassword}
-                 placeholder="confirm password"
-                 onChange={setFormField} />
-          <button className="btn" type="submit" disabled={!validateSignupForm()}>
+      <div className="form-container signup">
+        <div className="logo"></div>
+        <div className="title"><h2>Sign up</h2></div>
+        <form onSubmit={handleSignupSubmit} className="fields">
+          <div className="email">
+            <i className="fa fa-envelope icon"></i>
+            <input autoFocus
+                  id="email"
+                  type="email"
+                  value={formField.email}
+                  placeholder="email"
+                  onChange={setFormField} />
+          </div>
+          <div className="password">
+            <i className="fa fa-lock icon"></i>
+            <input id="password"
+                  type="password"
+                  value={formField.password}
+                  placeholder="password"
+                  onChange={setFormField} />
+          </div>
+          <div className="confirmPassword">
+            <i className="fa fa-lock icon"></i>
+            <input id="confirmPassword"
+                  type="password"
+                  value={formField.confirmPassword}
+                  placeholder="confirm password"
+                  onChange={setFormField} />
+          </div>
+          <button className="form-button" type="submit" disabled={!validateSignupForm()}>
             {isLoading && <i className="fa fa-refresh fa-spin"></i>} Sign up
           </button>
+          <p>Don't have an account? <NavLink to="/login" className="form-links">Login</NavLink></p>
         </form>
-      </>
+      </div>
     )
   }
 
   function renderConfirmationForm() {
     return (
-      <>
-        <h2>Confirmation Code</h2>
-        <form onSubmit={handleConfirmationSubmit} className="form-container">
-          <input autoFocus
-                 id="confirmationCode"
-                 type="tel"
-                 value={formField.confirmationCode}
-                 placeholder="confirmation code"
-                 onChange={setFormField} />
-          <p>Please check your email for the code.</p>
-          <button className="btn" type="submit" disabled={!validateConfirmationForm()}>
+      <div className="form-container">
+        <div className="logo"></div>
+        <div className="title"><h2>Confirmation Code</h2></div>
+        <p>Please check your email for the code.</p>
+        <form onSubmit={handleConfirmationSubmit} className="fields">
+          <div className="confirmationCode">
+            <i className="fa fa-lock icon"></i>
+            <input autoFocus
+                  id="confirmationCode"
+                  type="tel"
+                  value={formField.confirmationCode}
+                  placeholder="confirmation code"
+                  onChange={setFormField} />
+          </div>
+          <button className="form-button" type="submit" disabled={!validateConfirmationForm()}>
             {isLoading && <i className="fa fa-refresh fa-spin"></i>} Verify
           </button>
         </form>
-      </>
+      </div>
     )
   }
 
