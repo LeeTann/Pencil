@@ -12,3 +12,4 @@
 12. Create Signup page with email confirmation code.
 13. Added Neumorphic css design to login and register page
 14. Create a Note page and connect it to dynamoDB and s3
+15. Display list of Notes

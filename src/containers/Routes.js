@@ -4,6 +4,7 @@ import Home from './home/Home'
 import Login from './login/Login'
 import Signup from './signup/Signup'
 import Note from './note/Note'
+import Notes from './notes/Notes'
 import Notfound from './notfound/Notfound'
 
 function Routes() {
@@ -20,6 +21,9 @@ function Routes() {
       </Route>
       <Route exact path="/notes/new">
         <Note />
+      </Route>
+      <Route exact path="/notes/:id">
+        <Notes />
       </Route>
       <Route>
         <Notfound />

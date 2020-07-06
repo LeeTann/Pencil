@@ -27,11 +27,10 @@ function Navbar() {
       // add event listener when mounted
       document.addEventListener("mousedown", handleClick)
           // then remove event listener
-    return () => {
-      document.removeEventListener("mousedown", handleClick)
+      return () => {
+        document.removeEventListener("mousedown", handleClick)
+      }
     }
-    }
-
   }, [menuActive])
 
   async function handleLogout() {
