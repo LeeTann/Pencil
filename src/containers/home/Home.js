@@ -28,7 +28,9 @@ function Home() {
   }, [isAuthenticated])
 
   function loadNotes() {
-    return API.get("notes", "notes")
+    const notes = API.get("notes", "notes")
+    console.log("notes ",notes)
+    return notes
   }
 
   function displayListofNotes(notes) {
@@ -37,7 +39,8 @@ function Home() {
         <ol>
           <li>
             <NavLink key={note.noteId} to={`/notes/${note.noteId}`}>
-              {note.content.trim().split("\n")[0]}
+              {/* {note.content.trim().split("\n")[0]} */}
+              {note.topic}
               {"Created: " + new Date(note.createdAt).toLocaleString()}
             </NavLink>
           </li>

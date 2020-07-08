@@ -8,11 +8,12 @@ import './Note.css'
 function Note() {
   const file = useRef(null)
   const history = useHistory()
+  const [topic, setTopic] = useState("")
   const [content, setContent] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
   function validateForm() {
-    return content.length > 0
+    return content.length > 0 && topic.length > 0
   }
 
   function handleAttachment(e) {
@@ -31,7 +32,7 @@ function Note() {
     try {
       const attachment = file.current ? await s3Upload(file.current) : null
 
-      await createNote({ content, attachment })
+      await createNote({ topic, content, attachment })
       history.push("/")
     } catch (error) {
       alert(error.message)
@@ -41,17 +42,28 @@ function Note() {
 
   function createNote(note) {
     // ("notes table", "notes endpoint", "set body with note parameter")
-    return API.post("notes", "notes", { body: note })
+    const posted = API.post("notes", "notes", { body: note })
+    console.log("posted...", posted)
+    return posted
   }
 
 
   return (
     <div className="note">
-      <div className="logo"></div>
+      {/* <div className="logo"></div> */}
       <div className="title">Create a new note</div>
       <form onSubmit={handleSubmit} className="fields">
+        <div className="topic">
+          <i className="fa fa-pencil-square-o icon"></i>
+          <input autoFocus
+                id="topic"
+                type="topic"
+                value={topic}
+                placeholder="topic"
+                onChange={e => setTopic(e.target.value)} />
+        </div>
         <div className="content">
-          <textarea autoFocus
+          <textarea 
                     rows="20"
                     cols="50"
                     value={content}

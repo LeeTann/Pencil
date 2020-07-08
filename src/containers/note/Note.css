@@ -5,7 +5,7 @@
   margin: 100px auto 0;
   padding: 1rem 2rem;
   width: 40rem;
-  height: 40rem;
+  height: auto;
   padding: 30px 35px;
   border-radius: 40px;
   background-color: #ecf0f3;
@@ -13,6 +13,37 @@
               -13px -13px 20px #ffffff;
 }
 
+.topic {
+  border: none;
+  outline:none;
+  background: none;
+  font-size: 16px;
+  color: #555;
+  padding: 3px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: inset 8px 8px 8px #cbced1,
+              inset -8px -8px 8px #ffffff;
+}
+
+.icon {
+  color: #555;
+  margin: 16px 0px 0px 20px;
+}
+
 .content textarea{
   width: 100%;
+  border: none;
+  outline:none;
+  background: none;
+  font-size: 16px;
+  color: #555;
+  padding: 3px;
+  display: flex;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: inset 8px 8px 8px #cbced1,
+              inset -8px -8px 8px #ffffff;
 }
