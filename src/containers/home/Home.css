@@ -6,9 +6,47 @@
 .lander h1 {
   font-weight: 900;
   font-size: 50px;
+  color: #f06cb4;
 }
 
 .lander p {
   color: #999;
   font-size: 24px;
+}
+
+.your-notes {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 100px auto 0;
+  padding: 1rem 2rem;
+  width: 90%;
+  height: auto;
+  min-height: 30rem;
+  padding: 30px 35px;
+  border-radius: 40px;
+  background-color: #ecf0f3;
+  box-shadow: 13px 13px 20px #cbced1, 
+              -13px -13px 20px #ffffff;
+}
+.new-note {
+  color: #08b2eb;
+  font-size: 22px;
+}
+.new-note:hover {
+  color: #ff00d4;
+}
+.topic-title {
+  color: red;
+}
+.notes-list {
+  width: 100%;
+}
+.notes-list a {
+  display: flex;
+  justify-content: space-between;
+}
+.created-at {
+  font-size: 16px;
+  color: #AAA
 }

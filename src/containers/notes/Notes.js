@@ -13,6 +13,7 @@ function Notes() {
   const [content, setContent] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
+  const [isEditing, setIsEditing] = useState(true)
 
   useEffect(() => {
     function loadNote() {
@@ -77,6 +78,10 @@ function Notes() {
     setIsDeleting(true)
   }
 
+  function handleEdit() {
+    setIsEditing(!isEditing)
+  }
+
   return (
     <div className="notes">
       {note && (
@@ -84,12 +89,18 @@ function Notes() {
         <h3>{note.topic}</h3>
         <form onSubmit={handleSubmit} className="fields">
           <div className="content">
-            <textarea
+            <textarea disabled={isEditing}
+                    id="textarea"
                      rows="20"
                      cols="50"
                      value={content}
                      onChange={e => setContent(e.target.value)}
             />
+            <label className="checkbox-container">
+              <input type="checkbox" onClick={handleEdit}/>
+              <span className="checkmark"></span>
+              Edit
+            </label>
           </div>
 
           {note.attachment && (
@@ -111,7 +122,7 @@ function Notes() {
           <button className="form-button"
                   type="submit"
                   disabled={!validateForm()}>
-                  {isLoading && <i className="fa fa-refresh fa-spin"></i>} Save
+                  {isLoading && <i className="fa fa-refresh fa-spin"></i>} Save!
           </button>
           <button className="form-button"
                   type="submit"

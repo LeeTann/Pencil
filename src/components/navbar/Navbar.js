@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
 import './Navbar.css'
 import { GoThreeBars } from 'react-icons/go'
-import { GrFormClose } from 'react-icons/gr'
+import { MdClose } from 'react-icons/md'
 import { useAppContext} from '../../libs/contextLib'
 import { Auth } from 'aws-amplify'
 
@@ -45,7 +45,7 @@ function Navbar() {
     !isAuthenticating &&
     <nav className="navbar">
       <NavLink to="/">
-        <h1 className="title">Pencil</h1>
+        <div className="main-logo"></div>
       </NavLink>
         {/* only if menuActive is true, set 'active' classname */}
         <div ref={node} className={`menu-content ${menuActive && 'active'}`}>
@@ -64,7 +64,7 @@ function Navbar() {
           }
           </div>
 
-          {menuActive ? <GrFormClose className="close-menu" onClick={() => setMenuActive(!menuActive)} /> : <GoThreeBars className="menu-bar" onClick={() => setMenuActive(!menuActive)} />}
+          {menuActive ? <MdClose className="close-menu" onClick={() => setMenuActive(!menuActive)} /> : <GoThreeBars className="menu-bar" onClick={() => setMenuActive(!menuActive)} />}
  
     
  

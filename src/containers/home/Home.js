@@ -36,19 +36,20 @@ function Home() {
   function displayListofNotes(notes) {
     return [{}].concat(notes).map((note, i) => (
       i !== 0 ? (
-        <ol>
-          <li>
+        <ul>
+          <li className="notes-list">
             <NavLink key={note.noteId} to={`/notes/${note.noteId}`}>
-              {/* {note.content.trim().split("\n")[0]} */}
-              {note.topic}
-              {"Created: " + new Date(note.createdAt).toLocaleString()}
+              <div className="topic-title">{note.topic}</div>
+              <div className="created-at">{"Created: " + new Date(note.createdAt).toLocaleString()}</div>
             </NavLink>
           </li>
-        </ol>
+        </ul>
       ) : (
         <ul>
           <li>
-            <NavLink key="new" to="/notes/new">Created a new note</NavLink>
+            <NavLink key="new" to="/notes/new" className="new-note">
+              <b>{"\uFF0B"}</b> Create a new note
+            </NavLink>
           </li>
         </ul>
       )
@@ -59,14 +60,14 @@ function Home() {
     return (
       <div className="lander">
         <h1>Pencil</h1>
-        <p>A simple note taking app</p>
+        <p>A simple note taking app utilizing neumorphic design</p>
       </div>
     )
   }
 
   function renderNotesPage(){
     return (
-      <div className="notes">
+      <div className="your-notes">
         <h1>Your Notes</h1>
         <li>
           {!isLoading && displayListofNotes(notes)}
@@ -76,7 +77,7 @@ function Home() {
   }
 
   return (
-    <div className="home">
+    <div>
       {isAuthenticated ? renderNotesPage() : renderLandingPage()}
     </div>
   )
