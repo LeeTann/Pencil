@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { API, Storage } from 'aws-amplify'
 import config from '../../config/config'
+import { s3Upload } from '../../libs/awsLib'
 import './Notes.css'
 
 function Notes() {
@@ -53,6 +54,10 @@ function Notes() {
     file.current = event.target.files[0]
   }
 
+  function saveNote(note) {
+    return API.put("notes", `notes/${id}`, {body: note})
+  }
+
   async function handleSubmit(event) {
     event.preventDefault()
 
@@ -64,6 +69,22 @@ function Notes() {
     }
     
     setIsLoading(true)
+
+    try {
+      if (file.current) {
+        attachment = await s3Upload(file.current)
+      }
+
+      await saveNote({ content, attachment: attachment || note.attachment })
+      history.push('/')
+    } catch (error) {
+      alert(error.message)
+      setIsLoading(false)
+    }
+  }
+
+  function deletNote() {
+    return API.del('notes', `notes/${id}`)
   }
 
   async function handleDelete(event) {
@@ -76,6 +97,14 @@ function Notes() {
     }
 
     setIsDeleting(true)
+
+    try {
+      await deletNote()
+      history.push('/')
+    } catch (error) {
+      alert(error.message)
+      setIsDeleting(false)
+    }
   }
 
   function handleEdit() {
