@@ -12,6 +12,33 @@
 .lander p {
   color: #999;
   font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.btn-login {
+  background-color: #08b2eb;
+  padding: 5px 15px;
+  border-radius: 10%;
+  margin-right: 20px;
+  color:white;
+  box-shadow: 4px 4px 2px #a7aaaf,
+  -4px -4px 2px #ffffff;
+}
+.btn-login:hover {
+  background-color: #f06cb4;
+}
+
+.btn-signup {
+  background-color: #09f509;
+  padding: 5px 15px;
+  border-radius: 10%;
+  color: white;
+  box-shadow: 4px 4px 2px #a7aaaf,
+  -4px -4px 2px #ffffff;
+}
+
+.btn-signup:hover {
+  background-color: #f06cb4;
 }
 
 .your-notes {
@@ -49,4 +76,16 @@
 .created-at {
   font-size: 16px;
   color: #AAA
+}
+
+.your-notes li h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.main-loader {
+  font-size: 100px;
+  color: #ff00d4 !important;
 }

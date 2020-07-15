@@ -58,6 +58,7 @@
   color: #555;
   padding:15px 10px;
   width: 100%;
+  margin-left: 2px;
 }
 .email, .password {
   display: flex;
@@ -108,4 +109,15 @@
 .form-links {
   color: #44a2ee;
   margin-left: 0px;
+}
+
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: inset 8px 8px 8px #cccfd1,
+                        inset -8px -8px 8px #ffffff !important;
+    -webkit-border-radius: 40px;
+    -webkit-text-fill-color: #fd05e8 !important;
 }

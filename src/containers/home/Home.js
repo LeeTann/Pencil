@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import { useAppContext } from '../../libs/contextLib'
 import { API } from 'aws-amplify'
 import './Home.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 function Home() {
   const [notes, setNotes] = useState([])
@@ -40,7 +40,7 @@ function Home() {
           <li className="notes-list">
             <NavLink key={note.noteId} to={`/notes/${note.noteId}`}>
               <div className="topic-title">{note.topic}</div>
-              <div className="created-at">{"Created: " + new Date(note.createdAt).toLocaleString()}</div>
+              <div className="created-at">{note.topic ? "Created: " + new Date(note.createdAt).toLocaleString() : null}</div>
             </NavLink>
           </li>
         </ul>
@@ -60,7 +60,11 @@ function Home() {
     return (
       <div className="lander">
         <h1>Pencil</h1>
-        <p>A simple note taking app utilizing neumorphic design</p>
+        <p>A note taking app utilizing neumorphic design</p>
+        <div>
+          <Link to="/login" className="btn-login">Login</Link>
+          <Link to="/signup" className="btn-signup">Sign up</Link>
+        </div>
       </div>
     )
   }
@@ -70,7 +74,7 @@ function Home() {
       <div className="your-notes">
         <h1>Your Notes</h1>
         <li>
-          {!isLoading && displayListofNotes(notes)}
+          {!isLoading ? displayListofNotes(notes) : <h1><i className="fa fa-refresh fa-spin main-loader"></i></h1>}
         </li>
     </div>
     )

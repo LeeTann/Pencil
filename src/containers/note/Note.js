@@ -70,10 +70,10 @@ function Note() {
                     onChange={e => setContent(e.target.value)}
           />
         </div>
-        <div className="file">
-          <label htmlFor="attachment">Attachment</label>
+        <div>
+          <label htmlFor="custom-file-input">Attachment</label>
           <input type="file" 
-                id="attachment"
+                className="custom-file-input"
                 onChange={handleAttachment} 
           />
         </div>

@@ -119,7 +119,7 @@ function Notes() {
         <form onSubmit={handleSubmit} className="fields">
           <div className="content">
             <textarea disabled={isEditing}
-                    id="textarea"
+                     className={isEditing ? "not-editable" : "editable"}
                      rows="20"
                      cols="50"
                      value={content}
@@ -141,7 +141,7 @@ function Notes() {
             </>
           )}
   
-          <div className="file">
+          <div className="custom-file-input">
             {!note.attachment && <label htmlFor="attachment">No file attached</label>}
             <input type="file" 
                   id="attachment"
@@ -151,9 +151,9 @@ function Notes() {
           <button className="form-button"
                   type="submit"
                   disabled={!validateForm()}>
-                  {isLoading && <i className="fa fa-refresh fa-spin"></i>} Save!
+                  {isLoading && <i className="fa fa-refresh fa-spin"></i>} Save
           </button>
-          <button className="form-button"
+          <button className="form-button delete"
                   type="submit"
                   onClick={handleDelete}>
                   {isDeleting && <i className="fa fa-refresh fa-spin"></i>} Delete

@@ -14,3 +14,4 @@
 14. Create a Note page and connect it to dynamoDB and s3
 15. Display list of Notes
 16. Fixed css styles and added Edit button to notes
+17. Add Edit and Delete functionality
