@@ -61,11 +61,9 @@
   font-size: 22px;
 }
 .new-note:hover {
-  color: #ff00d4;
+  color: #ff0241;
 }
-.topic-title {
-  color: red;
-}
+
 .notes-list {
   width: 100%;
 }
@@ -88,4 +86,12 @@
 .main-loader {
   font-size: 100px;
   color: #ff00d4 !important;
+}
+
+.topic-title {
+  color: #ff00d4;
+}
+
+.topic-title:hover {
+  color:#2cff02;
 }
