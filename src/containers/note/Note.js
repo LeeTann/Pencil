@@ -73,7 +73,7 @@ function Note() {
         <div>
           <label htmlFor="custom-file-input">Attachment</label>
           <input type="file" 
-                className="custom-file-input"
+                className="custom-file-input hidden"
                 onChange={handleAttachment} 
           />
         </div>

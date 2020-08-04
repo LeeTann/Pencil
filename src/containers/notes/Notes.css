@@ -99,3 +99,7 @@
 .form-button.delete:active {
   background:#d40f0f;
 }
+
+.attachment {
+  display: hidden;
+}

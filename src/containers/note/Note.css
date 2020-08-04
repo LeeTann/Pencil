@@ -50,7 +50,7 @@
              inset -8px -8px 5px #ffffff;
 }
 
-.custom-file-input::-webkit-file-upload-button {
+/* .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
 .custom-file-input::before {
@@ -75,3 +75,4 @@
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
+ */

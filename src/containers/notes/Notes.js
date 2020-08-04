@@ -136,16 +136,19 @@ function Notes() {
             <>
               <p>File attachment</p>
               <a href={note.attachmentURL} target="_blank" rel="noopener noreferrer">
+                <input type="file" 
+                  className="custom-file-input"
+                  onChange={handleFileChange}  />
                 {formatFilename(note.attachment)}
-              </a>  
+              </a> 
             </>
           )}
   
-          <div className="custom-file-input">
-            {!note.attachment && <label htmlFor="attachment">No file attached</label>}
+          <div>
+            {!note.attachment && <label htmlFor="custom-file-input">No file attached</label>}
             <input type="file" 
-                  id="attachment"
-                  onChange={handleFileChange} 
+                className="custom-file-input"
+                onChange={handleFileChange} 
             />
           </div>
           <button className="form-button"
