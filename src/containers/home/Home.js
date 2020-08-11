@@ -6,6 +6,8 @@ import { NavLink, Link } from 'react-router-dom'
 
 function Home() {
   const [notes, setNotes] = useState([])
+  const [filtered, setFiltered] = useState([])
+  const [searchTerm, setSearchTerm] = useState("")
   const { isAuthenticated } = useAppContext()
   const [isLoading, setIsLoading] = useState(true)
 
@@ -16,8 +18,9 @@ function Home() {
       }
 
       try {
-        const notes = await loadNotes()
+        let notes = await loadNotes()
         setNotes(notes)
+        setFiltered(notes)
       } catch (error) {
         alert(error.message)
       }
@@ -27,14 +30,23 @@ function Home() {
     onLoad()
   }, [isAuthenticated])
 
+  useEffect(() => {
+    const results = filtered.filter(note => note.topic.toLowerCase().includes(searchTerm.trim()))
+
+    setNotes(results)
+  }, [filtered, searchTerm])
+
+  console.log("new notes",notes)
+
   function loadNotes() {
     const notes = API.get("notes", "notes")
     console.log("notes ",notes)
+
     return notes
   }
 
-  function displayListofNotes(notes) {
-    return [{}].concat(notes).map((note, i) => (
+  function displayListofNotes(filtered) {
+    const listOfNotes = [{}].concat(notes).map((note, i) => (
       i !== 0 ? (
         <ul>
           <li className="notes-list">
@@ -47,13 +59,19 @@ function Home() {
       ) : (
         <ul>
           <li>
-            <NavLink key="new" to="/notes/new" className="new-note">
+            <NavLink key={i} to="/notes/new" className="new-note">
               <b>{"\uFF0B"}</b> Create a new note
             </NavLink>
           </li>
         </ul>
       )
     ))
+    return listOfNotes
+  }
+
+  const onChange = (e) => {
+    setSearchTerm(e.target.value)
+    console.log(searchTerm)
   }
 
   function renderLandingPage() {
@@ -73,8 +91,13 @@ function Home() {
     return (
       <div className="your-notes">
         <h1>Your Notes</h1>
+        <input type="text"
+              placeholder="search"
+              value={searchTerm}
+              onChange={onChange} 
+        />
         <li>
-          {!isLoading ? displayListofNotes(notes) : <h1><i className="fa fa-refresh fa-spin main-loader"></i></h1>}
+          {!isLoading ? displayListofNotes(filtered) : <h1><i className="fa fa-refresh fa-spin main-loader"></i></h1>}
         </li>
     </div>
     )

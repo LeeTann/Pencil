@@ -73,14 +73,20 @@
 }
 .created-at {
   font-size: 16px;
-  color: #AAA
 }
 
-.your-notes li h1 {
+.your-notes h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+}
+.your-notes input {
+  border-radius: 5px;
+  border: 1px solid #f06cb4;
+  padding: 5px;
+  color: #1b1b1b;
+  width: 55%;
+  margin: 0 auto;
 }
 
 .main-loader {
@@ -94,4 +100,29 @@
 
 .topic-title:hover {
   color:#2cff02;
+}
+
+@media screen and (max-width: 800px) {
+  .created-at {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .your-notes {
+    width: 95%;
+    padding: 5% 3%;
+  }
+  .your-notes h1 {
+    font-size: 24px;
+  }
+  .your-notes input {
+    padding: 3px;
+  }
+  .new-note {
+    font-size: 18px;
+  }
+  .topic-title {
+    font-size: 14px;
+  }
 }
