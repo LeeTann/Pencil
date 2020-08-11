@@ -16,3 +16,4 @@
 16. Fixed css styles and added Edit button to notes
 17. Add Edit and Delete functionality
 18. Add styling to notes and fixed list of notes display on homepage.
+19. Added search feature. 
