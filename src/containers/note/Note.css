@@ -76,3 +76,30 @@
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
  */
+
+ @media screen and (max-width: 500px) {
+   .note {
+    width: 95%;
+    padding: 5% 3%;
+   }
+   .icon {
+    margin: 10px 0px 0px 10px;
+   }
+   .topic input {
+     padding: 5px 5px
+   }
+   .topic {
+    font-size: 14px;
+    padding: 5px;
+    box-shadow: inset 3px 3px 3px #cbced1,
+    inset -3px -3px 3px #ffffff;
+   }
+   .content textarea {
+     padding: 10px;
+     font-size: 14px;
+     box-shadow: 3px 3px 3px #cbced1,
+     -3px -3px 3px #ffffff,
+     inset 3px 3px 3px #cbced1,
+     inset -3px -3px 3px #ffffff;
+   }
+ }

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { API, Storage } from 'aws-amplify'
 import config from '../../config/config'
-import { s3Upload } from '../../libs/awsLib'
+import { s3Upload, s3Delete } from '../../libs/awsLib'
 import './Notes.css'
 
 function Notes() {
@@ -72,6 +72,9 @@ function Notes() {
 
     try {
       if (file.current) {
+        if (note.attachment) {        
+          await s3Delete(note.attachment)
+        }
         attachment = await s3Upload(file.current)
       }
 
@@ -132,25 +135,23 @@ function Notes() {
             </label>
           </div>
 
-          {note.attachment && (
-            <>
-              <p>File attachment</p>
+          {note.attachment ? (
+            <>        
               <a href={note.attachmentURL} target="_blank" rel="noopener noreferrer">
-                <input type="file" 
-                  className="custom-file-input"
-                  onChange={handleFileChange}  />
                 {formatFilename(note.attachment)}
               </a> 
+              <input type="file" 
+                  className="custom-file-input"
+                  onChange={handleFileChange}  />
             </>
-          )}
-  
+          ) : (          
           <div>
-            {!note.attachment && <label htmlFor="custom-file-input">No file attached</label>}
+            <label htmlFor="custom-file-input">No file attached</label>
             <input type="file" 
                 className="custom-file-input"
-                onChange={handleFileChange} 
-            />
-          </div>
+                onChange={handleFileChange} />
+          </div> )}
+
           <button className="form-button"
                   type="submit"
                   disabled={!validateForm()}>

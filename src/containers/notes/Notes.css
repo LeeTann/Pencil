@@ -84,13 +84,15 @@
 }
 
 .content .not-editable {
-  background-color: black;
-  color: white;
+  /* background-color: #ecf0f3; */
+  /* background-color: #ffffff; */
+
+  background-color: white;
+  color: #2196F3;
 }
 
 .content .editable {
-  background-color: white;
-  color: black;
+  color: #ff00d4;
 }
 
 .form-button.delete:hover {
@@ -102,4 +104,18 @@
 
 .attachment {
   display: hidden;
+}
+
+@media screen and (max-width: 500px) {
+  .notes {
+    width: 95%;
+    padding: 5% 3%;
+   }
+
+   /* .content textarea {
+     padding: 10px;
+     font-size: 14px;
+     box-shadow: inset 3px 3px 3px #cbced1,
+     inset -3px -3px 3px #ffffff;
+   } */
 }
